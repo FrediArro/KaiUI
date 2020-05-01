@@ -16,6 +16,8 @@
  * 12. Input
  * 13. Table
  * 14. Progress
+ * 15. Tabs
+ * 16. Player
  * ===========================
  */
 
@@ -146,6 +148,8 @@ h1, h2, h3, h4, h5, ul, p {
     background-color: #320374;
     color: #fff;
     text-align: center;
+    position: fixed;
+    width: 100%;
 }
 
 /* ============== Separator ============== */
@@ -159,16 +163,29 @@ h1, h2, h3, h4, h5, ul, p {
 
 /* ============== Software key ============== */
 .kui-software-key {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 100;
     height: 30px;
     background-color: #cccccc;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    padding: 0 5px;
+    justify-content: space-between;
     color: #323232;
 }
 
 .kui-software-key h5 {
-    width: 33.3333333333%;
+}
+
+.kui-software-key h5:first-child {
+    text-align: left;
+    padding-left: 5px;
+}
+
+.kui-software-key h5:last-child {
+    text-align: right;
+    padding-right: 5px;
 }
 
 /* ============== Toast ============== */
@@ -190,6 +207,11 @@ h1, h2, h3, h4, h5, ul, p {
 }
 
 /* ============== List ============== */
+.kui-list-holder {
+    padding-top: 58px;
+    margin-bottom: 30px;
+}
+
 .kui-list {
     list-style: none;
 }
@@ -229,16 +251,26 @@ h1, h2, h3, h4, h5, ul, p {
 
 .kui-list li:focus .kui-pri,
 .kui-list li:focus .kui-sec {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* ============== Options Menu ============== */
 .kui-option-menu {
     width: 100%;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     bottom: 0;
     display: none;
+    padding-bottom: 30px;
+}
+
+.kui-option-menu-background {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    background-color: black;
+    opacity: 65%;
 }
 
 .kui-option-menu .kui-option-title {
@@ -291,11 +323,22 @@ button.kui-btn:focus {
 
 /* ============== Input ============== */
 .kui-input-holder {
-    height: 76px;
-    padding: 7px 10px;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    width: 100%;
+    height: 36px;
     background-color: #fff;
+}
+
+li:focus .kui-input-holder {
+    background-color: #873eff;
+    outline: 0;
+}
+
+li:focus .kui-input-holder .kui-input{
+    user-focus: true;
+}
+
+li:focus-within{
+    background-color: #873eff;
 }
 
 .kui-input-holder.kui-focus-within {
@@ -306,7 +349,7 @@ button.kui-btn:focus {
 .kui-input-label {
     color: #323232;
     display: block;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
 }
 
 .kui-input-holder.kui-focus-within .kui-input-label {
@@ -316,8 +359,7 @@ button.kui-btn:focus {
 .kui-input {
     height: 36px;
     width: 100%;
-    border-radius: 2px;
-    padding-left: 10px;
+    padding-left: 5px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: 1px solid #aaaaaa;
@@ -413,6 +455,118 @@ button.kui-btn:focus {
     -moz-appearance: none;
     appearance: none;
     background: #873eff;
+}
+
+/* ============== Tabs ============== */
+
+.kui-tab {
+    width: 100%;
+    height: 30px;
+    margin-top: 28px;
+    position: fixed;
+    background-color: #E6E6E6;
+    display: inline-flex;
+    align-items: center;
+}
+
+.kui-tab-text{
+    color: #aaaaaa;
+    width: 50%;
+    text-align: center;
+}
+
+.kui-tab-text-selected{
+    color: black;
+    font-weight: bold;
+    border-bottom: 3px solid #863EFF;
+    text-align: center;
+    width: 50%;
+}
+
+div#page-0
+{
+
+}
+
+div#page-1
+{
+    display:none;
+
+}
+
+/* ============== Player ============== */
+/* https://stackoverflow.com/questions/14142378/how-can-i-fill-a-div-with-an-image-while-keeping-it-proportional */
+
+.kui-player-thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: calc(100% - 58px);
+    padding-top: 28px;
+    padding-bottom: 30px;
+}
+
+.kui-player-thumbnail img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+
+}
+
+.kui-player-info {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    padding-bottom: 30px;
+    background-color: black;
+    z-index: 2;
+    opacity: 50%;
+}
+
+.kui-player-info .kui-pri, .kui-sec {
+    color: white;
+    opacity: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.kui-player-info .kui-pri {
+    font-weight: bold;
+}
+
+.kui-player-time-info {
+    width: 92%;
+    padding: 12px 4% 0;
+}
+
+.kui-player-timeline {
+    width: 100%;
+    height: 5px;
+    background-color: white;
+    opacity: 100%;
+}
+
+.kui-playback-time-holder {
+    display: inline-flex;
+    width: 100%;
+}
+
+.kui-playback-time {
+    width: 50%;
+    color: white;
+    opacity: 100%;
+    padding-top: 5px;
+}
+
+#current-time {
+    text-align: left;
+}
+
+#time-remaining {
+    text-align: right;
 }
 
 /* KaiOS portrait devices (240x320) */
